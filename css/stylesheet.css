@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+.main-content {
+  margin: 10px;
+}
+.canvas-container {
+  width: 75%;
+  margin: 0px 0 20px 0;
+}
+canvas {
+  display: block;
+  border: 1px solid #000;
+  margin: 0px 0 20px 0;
+}
+.signature-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.signature-indicator {
+  margin-left: 15px;
+}
+.clear-canvas-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  border: 1px solid #000;
+}
+.clear-canvas-btn:hover {
+  cursor: pointer;
+  color: #d12828;
+  border: 1px solid #d12828;
+}
