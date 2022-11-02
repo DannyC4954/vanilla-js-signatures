@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     c.canvas.addEventListener('mouseup', function(e){
       finishedPostition(c);
     });
+    c.canvas.addEventListener('mouseout', function(e){
+        finishedPostition(c);
+    });
     c.canvas.addEventListener('mousemove', function(e){
       draw(e, c);
     });
@@ -49,12 +52,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   function draw(e, ctx){
     if(!painting) return;
+    var rect = ctx.canvas.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
     ctx.lineWidth = 5;
     ctx.lineCap = 'round';
-    ctx.lineTo(e.clientX - ctx.canvas.offsetLeft, e.clientY - ctx.canvas.offsetTop);
+    ctx.lineTo(x, y);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(e.clientX - ctx.canvas.offsetLeft, e.clientY - ctx.canvas.offsetTop);
+    ctx.moveTo(x, y);
   }
   
 });
