@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
       finishedPostition(c);
     });
     c.canvas.addEventListener('mouseout', function(e){
-        finishedPostition(c);
+        painting = false;
+        c.beginPath();
     });
     c.canvas.addEventListener('mousemove', function(e){
       draw(e, c);
