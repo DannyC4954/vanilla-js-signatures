@@ -48,3 +48,10 @@ canvas:hover {
 .pill-error {
   color: #fc0303;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 400px) {
+  .canvas-container {
+    width: 90%;
+  }
+}
