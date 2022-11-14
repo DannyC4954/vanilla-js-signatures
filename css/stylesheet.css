@@ -52,6 +52,6 @@ canvas:hover {
 /* Media Queries */
 @media only screen and (max-width: 400px) {
   .canvas-container {
-    width: 90%;
+    width: 99%;
   }
 }
