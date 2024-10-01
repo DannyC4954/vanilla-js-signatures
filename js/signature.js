@@ -5,6 +5,27 @@ const ctx = [];
 const clearCanvas = document.querySelectorAll('.clear-canvas-btn');
 let painting = false;
 
+function generateHTMLElement(element, attributes = {}, text = '', icon = []){
+  let newElement = document.createElement(element);
+
+  if (text && text !== "") {
+    if (icon.length > 0) {
+        let iconElement = generateHTMLElement('i', {class: icon.join(' ')});
+        newElement.appendChild(iconElement);
+    }
+
+    newElement.appendChild(document.createTextNode(text));
+  }
+
+  if (attributes) {
+    for (let attribute in attributes) {
+        newElement.setAttribute(attribute, attributes[attribute]);
+    }
+  }
+
+  return newElement;
+}
+
 function prepateSignatureBoxes(){
   canvas.forEach(function(c){
     c.height = 250;
@@ -27,7 +48,7 @@ function prepateSignatureBoxes(){
       context.beginPath();
       
       this.parentNode.querySelector('.signature-data').value = '';
-      this.parentNode.querySelector('.signature-indicator').innerHTML = '';
+      this.parentNode.querySelector('.signature-indicator').textContent = '';
     });
   });
 }
@@ -50,7 +71,8 @@ function handleMultipleEvents(eventTypes, ctx){
           ctx.beginPath();
 
           if (ctx.canvas.parentNode.querySelector('.signature-data').value.length == 0){
-            ctx.canvas.parentNode.querySelector('.signature-indicator').innerHTML = '<span class="pill-error"><i class="fa fa-times"></i></span>';
+            ctx.canvas.parentNode.querySelector('.signature-indicator').textContent = '';
+            ctx.canvas.parentNode.querySelector('.signature-indicator').appendChild(generateHTMLElement('span', {class: 'pill-error'}, ' ', ['fa fa-times']));
           }
           break;
         case 'mousemove':
@@ -70,7 +92,8 @@ function startPosition(e, ctx){
 function finishedPostition(ctx){
     painting = false;
     ctx.canvas.parentNode.querySelector('.signature-data').value = ctx.canvas.toDataURL();
-    ctx.canvas.parentNode.querySelector('.signature-indicator').innerHTML = '<i class="fas fa-check-circle" style="color: #30b68c;"></i>';
+    ctx.canvas.parentNode.querySelector('.signature-indicator').textContent = '';
+    ctx.canvas.parentNode.querySelector('.signature-indicator').appendChild(generateHTMLElement('span', {class: 'pill-success'}, ' ', ['fa fa-check']));
     ctx.beginPath();
 }
 
